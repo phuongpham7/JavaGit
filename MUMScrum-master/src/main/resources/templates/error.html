@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="layout/layout::head(title='MUMScrum Home-Amazing Five Group')">
+</head>
+
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>System Error</h1>
+			<p>Please login or contact us</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+			</p>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout::footer">footer</footer>
+</body>
+</html>

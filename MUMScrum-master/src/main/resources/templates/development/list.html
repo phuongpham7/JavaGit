@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='User Story List')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<div class="container-fluid">
+		<div class="hub-content">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<table class="table table-condensed table-hover">
+						<tr>
+							<th>Id</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Estimate Hour</th>
+							<th>Estimate Development Effort</th>
+						</tr>
+						<tr th:each="us:${userStories}">
+							<td th:text="${us.id}">d</td>
+							<td th:text="${us.title}">d</td>
+							<td th:text="${us.description}">d</td>
+							<td th:text="${us.estimatedHours}">d</td>
+							<td><form action="#" th:action="${us.id}"
+									th:object="${userStory}" method="get">
+									<input type="submit" value="Select" />
+								</form></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

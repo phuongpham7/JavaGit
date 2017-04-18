@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Update Test Efford')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<section class="container">
+		<div>
+			<form action="updateTestEfford" method="post">
+				<label for="updateTest" style="font-size: 30px;"><b>Update
+						Test Efford</b></label>
+				<div>
+				<label for="userStory">UserStory:</label> <br/>
+				<select name="userStoryId" class="form-control">
+					<option th:each="userStory:${allUserStory}"
+						th:value="${userStory.id}" th:text="${userStory.title}"></option>
+				</select>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="TimeStamp">Enter Date:</label> <input type="Date"
+						name="timeStamp" class="form-control" id="timeStamp" th:value ="${currentDate}" />
+				</div>
+				<div class="form-group">
+					<label for="HoursDone">Enter hours done today:</label> <input
+						type="number" name="hoursDone" class="form-control" id="hoursDone" />
+				</div>
+
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+		</div>
+	</section>
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>

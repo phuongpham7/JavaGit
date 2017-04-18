@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Employees List')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<div class="container-fluid">
+		<div class="hub-content">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<form th:action="'/employee/add'" method="get">
+										<button style = "float: right" type="submit" class="btn btn-create">Add</button>
+					</form>
+					<label for="SignIn" style="font-size: 30px;"><b>All Employees</b></label>
+					<table class="table table-condensed">
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Email</th>
+							
+							<th>Action</th>
+						</tr>
+						<tr th:each="user:${users}">
+							<td th:text="${user.id}">d</td>
+							<td th:text="${user.name}">d</td>
+							<td th:text="${user.email}">d</td>
+							<td>
+								<div>
+								<form th:action="'/employee/'+${user.id}" th:object="${user}" method="get">
+										<button style = "float: left" type="submit" class="btn btn-info">View</button>
+								</form>
+								<form th:action="'/employee/'+${user.id}+'/update'" th:object="${user}" method="get">
+										<button style = "float: left" type="submit" class="btn btn-primary">Update</button>
+								</form>
+								
+								<form th:action="'/employee/'+${user.id}+'/delete'" th:object="${user}" method="post">
+										<button style = "float: left" type="submit" class="btn btn-danger">Delete</button>
+								</form>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

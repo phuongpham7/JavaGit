@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Update Test Efford')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<section class="container">
+		<div>
+			<form action="assignScrum" method="post">
+				<label for="updateTest" style="font-size: 30px;"><b>Assign Scrum Master</b></label>
+				<br/>
+				<label for="scrumMaster">Scrum Master:</label> <br/>
+				<select name="scrumMasterId" class="form-control">
+					<option th:each="sm:${scrumMaster}"
+						th:value="${sm.id}" th:text="${sm.name}"></option>
+				</select>
+				<br/>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+		</div>
+	</section>
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>

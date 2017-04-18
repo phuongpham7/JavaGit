@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Sprint List')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<div class="container-fluid">
+		<div class="hub-content">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" onclick="location.href = '/sprint/add';"
+							class="btn btn-default">Add Sprint</button>
+					</div>
+				</div>
+				<br /><br/>
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<table class="table table-condensed table-hover">
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Start Date</th>
+							<th>Target Date</th>
+							<th>User Stories</th>
+						</tr>
+						<tr th:each="sprint:${sprints}">
+							<td th:text="${sprint.id}">d</td>
+							<td th:text="${sprint.name}">d</td>
+							<td th:text="${sprint.startDate}">d</td>
+							<td th:text="${sprint.dueDate}">d</td>
+							<td><span th:each="us:${sprint.userStoryList}"><span
+									th:text="${us.title}"></span><br /></span></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

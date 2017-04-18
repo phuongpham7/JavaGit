@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Show Product Backlog Detail')">
+</head>
+
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<section class="container">
+		<div class="show">
+			<form th:action="'/product/list'" method="get">
+				<label for="SignIn" style="font-size: 30px;"><b>Product Backlog Detail</b></label>
+				<div class="form-group">
+					<!-- <label for="InputName">Employee Name:</label> 
+					<div class="col-sm-10">
+						<div class="col-sm-10">${name}</div>
+					</div> -->
+					 <div class="row">
+						<label class="col-sm-2">ID</label>
+						<div class="col-sm-10"><span th:text = "${pb.id}"></span></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<!-- <label for="InputEmail">Email address:</label> 
+					<div class="col-sm-10">
+						<div class="col-sm-10">${email}</div>
+					</div> -->
+					<div class="row">
+						<label class="col-sm-2">Name</label>
+						<div class="col-sm-10"><span th:text = "${pb.name}"></span></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<!-- <label for="InputPassword">Password:</label> 
+					<div class="col-sm-10">
+						<div class="col-sm-10">${password}</div>
+					</div> -->
+					<div class="row">
+						<label class="col-sm-2">Email</label>
+						<div class="col-sm-10"><span th:text = "${pb.description}"></span></div>
+					</div>
+				</div>
+				<div>
+					<form th:action="'/product/list'" method="get">
+						<button style = "float: left" type="submit" class="btn btn-info">Back to List</button>
+					</form>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Test Efford List')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<label style="font-size: 30px;"><b>Test Efford</b></label><br/>
+		<li class="btn btn-default"><a href="/userStory/estimateTestEfford">Estimate Test Efford</a></li>
+		<li class="btn btn-default"><a href="/userStory/updateTestEfford">Update Test Efford</a></li>
+		<br/>
+		<br/>
+		<table class="table table-condensed table-hover">
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Estimated Time</th>
+				<th>Current Time</th>
+			</tr>
+			<tr th:each="us:${userStories}">
+				<td th:text="${us.id}"></td>
+				<td th:text="${us.title}"></td>
+				<td th:text="${us.description}"></td>
+				<td th:text="${us.estimatedHours}"></td>
+			</tr>
+		</table>
+	</div>
+
+
+
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>

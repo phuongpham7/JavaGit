@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Burndown Chart')">
+</head>
+<body>
+
+	<nav th:replace="layout/layout::nav"></nav>
+
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<table style="display:none;" id="eff" class="table table-condensed table-hover">
+			<tr>
+				<th>day</th>
+
+			</tr>
+			<tr th:each="dd : ${days}">
+				<td th:text="${dd}"></td>
+			</tr>
+		</table>
+		
+		<table style="display:none;" id="days" class="table table-condensed table-hover">
+			<tr>
+				<th>day</th>
+
+			</tr>
+			<tr th:each="bde : ${burndown}">
+				<td th:text="${bde}"></td>
+			</tr>
+		</table>
+		
+		<table style="display:none;" id="supp" class="table table-condensed table-hover">
+			<tr>
+				<th>day</th>
+
+			</tr>
+			<tr th:each="ss : ${supposed}">
+				<td th:text="${ss}"></td>
+			</tr>
+		</table>
+		
+		<link href="/chartist.css" rel="stylesheet" />
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src="/chartist.js"></script>
+		<span>Hours left: </span>
+		 <span th:text="${totalSprintEffort}"></span>
+		<div class="ct-chart ct-perfect-fourth"></div>
+		
+		<script type="text/javascript">
+		
+			$(document).ready(function(){
+
+				var suppArray = [];
+				
+				$("table#supp tr").each(function() {
+				    var tableData = $(this).find('td');
+				    if (tableData.length > 0) {
+				        tableData.each(function() { suppArray.push($(this).text()); });
+				    }
+				});
+				
+				
+				var myTableArray = [];
+				
+				$("table#days tr").each(function() {
+				    var tableData = $(this).find('td');
+				    if (tableData.length > 0) {
+				        tableData.each(function() { myTableArray.push($(this).text()); });
+				    }
+				});
+				
+				var myDaysArray = [];
+				
+				$("table#eff tr").each(function() {
+				    var tableData = $(this).find('td');
+				    if (tableData.length > 0) {
+				    	tableData.each(function() { myDaysArray.push($(this).text()); });
+				    }
+				});
+				
+				console.log(myTableArray);
+				console.log(myDaysArray);
+				console.log(suppArray);
+		
+				var data = {
+					// A labels array that can contain any sort of values
+					labels : myDaysArray,
+					// Our series array that contains series objects or in this case series data arrays
+					series : [ myTableArray, suppArray ]
+				};
+				
+				var options = {
+						  width: 800,
+						  height: 400
+						};
+
+				// Create a new line chart object where as first parameter we pass in a selector
+				// that is resolving to our chart container element. The Second parameter
+				// is the actual data object.
+				new Chartist.Line('.ct-chart', data, options);
+			});
+		</script>
+
+	</div>
+	<footer th:replace="layout/layout::footer">${totalSprintEffort}</footer>
+</body>
+</html>

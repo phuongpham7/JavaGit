@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='User Story List')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<div class="container-fluid">
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<label style="font-size: 30px;"><b>Release: <span th:text="${release.name}"></span></b></label>
+		<br/>
+		<label style="font-size: 25px;float:left"><b>Scrum Master: <span th:if = "${currentScrumMaster != null}" th:text="${currentScrumMaster.name}"></span>&nbsp;</b></label>
+		<form th:action="'/release/'+${release.id}+'/assignScrum'" th:object="${release}" method="get">
+						<button type="submit" class="btn btn-info">Assign Scrum Master</button>
+					</form>
+		<br/>
+			<table class="table table-condensed table-hover">
+			<label style="font-size: 25px;"><b>User Stories: </b></label>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Description</th>
+					
+				</tr>
+				<tr th:each="us:${userStories}">
+					<td th:text="${us.id}">d</td>
+					<td th:text="${us.title}">d</td>
+					<td th:text="${us.description}">d</td>
+
+
+
+				</tr>
+				<div style="text-align: left">
+				<form style="float:left;" th:action="'/release/'+${release.id}+'/addus'" th:object="${release}" method="post">
+					<button type="submit" class="btn btn-info">Add</button>
+					<select style="width: 250px;height: 30px" name="userStoryId"><option
+							th:each="userStory:${allUserStory}" th:value="${userStory.id}"
+							th:text="${userStory.title}"></option>
+					</select>
+				</form>
+                    
+					<form style="float:left;" th:action="'/release/'+${release.id}+'/deleteus'" th:object="${release}" method="post">
+						<button type="submit" class="btn btn-info">Delete</button>
+						<select style="width: 250px;height: 30px" name ="userStoryId2"><option
+								th:each="userStory:${allUserStory2}" th:value="${userStory.id}"
+								th:text="${userStory.title}"></option>
+						</select>
+					</form>
+				</div>
+			</table>
+		
+
+
+	</div>
+</div>
+
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

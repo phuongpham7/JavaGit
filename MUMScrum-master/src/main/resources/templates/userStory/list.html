@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='User Story List')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<div class="container-fluid">
+		<div class="hub-bar">
+			<table class="table">
+				<tr>
+					<td><div class="section-left">
+							<a href="/">Backlogs</a>
+						</div>
+						<div class="section-left">
+							<a href="/">Querys</a>
+						</div></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<div class="hub-content">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="#">Overview <span
+								class="sr-only">(current)</span></a></li>
+						<li><a href="#">Reports</a></li>
+						<li><a href="#">Analytics</a></li>
+						<li><a href="#">Export</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<table class="table table-condensed table-hover">
+						<tr>
+							<th>Id</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Developer / Tester</th>
+						</tr>
+						<tr th:each="us:${userStories}">
+							<td th:text="${us.id}">d</td>
+							<td th:text="${us.title}">d</td>
+							<td th:text="${us.description}">d</td>
+
+<!-- 							<td th:if="${us.assignedTo!=null}"><span th:text="${us.assignedTo.name}"></span> / <span th:text="${us.assignedTo.name}"></span></td>
+							<td><input type="submit" value="Assign to Developer/Tester"/></td>
+ -->
+ 							<td><span th:if="${us.developer!=null}"><span 
+ 									th:if="${us.developer.name!=null}"><span 
+ 										th:text="${us.developer.name}"></span></span></span> <span> / </span> <span 
+ 								th:if="${us.tester!=null}"><span 
+ 									th:if="${us.tester.name!=null}"><span 
+ 										th:text="${us.tester.name}"></span></span></span> 
+ 								<form action="#" th:action="${us.id}" th:object="${userStory}" 
+ 									method="get"> 
+									<input type="submit" value="Select" /> 
+ 								</form></td> 
+
+
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

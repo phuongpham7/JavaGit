@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Employee Main')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<div class="sidebar">
+		<div class="nav-sidebar">
+			<ul class="nav">
+				<li th:if="${productOwner != null}"><a href="/product/list">Product
+						BackLog</a></li>
+				<li th:if="${productOwner != null or scrumMaster != null}"><a
+					href="/releaseBacklog">Release Backlog</a></li>
+				<li th:if="${scrumMaster != null}"><a href="/sprint]">Sprint</a></li>
+				<li th:if="${productOwner != null or scrumMaster != null or developer != null or tester != null}"><a
+					href="/userStory/list">User Story</a></li>
+				<li th:if = "${developer != null}"><a href ="#">User Story(Developer)</a></li>
+				<li th:if = "${tester != null}"><a href ="employee/tester">User Story(Tester)</a></li>
+				<li th:if="${Hr != null}"><a href="/employee">Employee List</a></li>	
+				<li><a href="/employee/profile">Profile</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class = "col-md-offset-2">
+		<p th:text="'Welcome, '+ ${user.name} + '! '" />
+	</div>
+
+
+
+
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Add New Product Backlog')">
+</head>
+
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<section class="container">
+		<div class="add">
+			<form action="add" method="post">
+				<label for="SignIn" style="font-size: 30px;"><b>Product Backlog Form</b></label>
+				<div class="form-group">
+					<label for="inputName">Name:</label> <input type="text" 
+					   name="inputName" class="form-control" id="inputName" placeholder="Name" />
+				</div>
+				<div class="form-group">
+					<label for="inputDescription">Description:</label> <input type="text"
+						name="inputDescription" class="form-control" id="inputDescription" placeholder="Description" />
+				</div>
+					
+				<button type="submit" class="btn btn-default">Save</button>
+				
+				<div class="form-group">
+				<span style="color: red;" th:text="${validitity}"></span>
+				</div>
+				
+			</form>
+		</div>
+	</section>
+
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>

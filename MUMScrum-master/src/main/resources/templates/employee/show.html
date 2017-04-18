@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='Show Employee Detail')">
+</head>
+
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<section class="container">
+		<div class="show">
+			<form th:action="'/employee'" method="get">
+				<label for="SignIn" style="font-size: 30px;"><b>Employee Detail</b></label>
+				<div class="form-group">
+					<!-- <label for="InputName">Employee Name:</label> 
+					<div class="col-sm-10">
+						<div class="col-sm-10">${name}</div>
+					</div> -->
+					 <div class="row">
+						<label class="col-sm-2">ID</label>
+						<div class="col-sm-10"><span th:text = "${user.id}"></span></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<!-- <label for="InputEmail">Email address:</label> 
+					<div class="col-sm-10">
+						<div class="col-sm-10">${email}</div>
+					</div> -->
+					<div class="row">
+						<label class="col-sm-2">Name</label>
+						<div class="col-sm-10"><span th:text = "${user.name}"></span></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<!-- <label for="InputPassword">Password:</label> 
+					<div class="col-sm-10">
+						<div class="col-sm-10">${password}</div>
+					</div> -->
+					<div class="row">
+						<label class="col-sm-2">Email</label>
+						<div class="col-sm-10"><span th:text = "${user.email}"></span></div>
+					</div>
+				</div>
+				<div>
+					<form th:action="'/employee'" method="get">
+						<button style = "float: left" type="submit" class="btn btn-info">Back to List</button>
+					</form>
+								
+					<form th:action="'/employee/'+${user.id}+'/update'" th:object="${user}" method="get">
+						<button style = "float: left" type="submit" class="btn btn-primary">Update</button>
+					</form>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>

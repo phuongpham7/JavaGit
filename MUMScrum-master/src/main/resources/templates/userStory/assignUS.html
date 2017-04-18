@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout::head(title='User Story List')">
+</head>
+<body>
+	<nav th:replace="layout/layout::nav"></nav>
+	<div class="container-fluid">
+		<div class="hub-bar">
+			<table class="table">
+				<tr>
+					<td><div class="section-left">
+							<a href="/">Backlogs</a>
+						</div>
+						<div class="section-left">
+							<a href="/">Querys</a>
+						</div></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<div class="hub-content">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="#">Overview <span
+								class="sr-only">(current)</span></a></li>
+						<li><a href="#">Reports</a></li>
+						<li><a href="#">Analytics</a></li>
+						<li><a href="#">Export</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<h2 th:text="${userStory.title}">List of Seed Starters</h2>
+					<span>Assign Developer/Tester</span>
+					
+					<form action="#" th:action="@{/userstory/save}"
+						th:object="${userStory}" method="post">
+
+						<select th:field="*{developer}">
+							<option th:each="employee:${allDevelopers}" th:selected="${userStory.developer}"
+								th:value="${employee.id}" th:text="${employee.name}"></option>
+						</select> <input type="hidden" th:field="*{id}" th:value="${userStory.id}" />
+						
+						<select th:field="*{tester}">
+							<option th:each="employee:${allTesters}" th:selected="${userStory.tester}"
+								th:value="${employee.id}" th:text="${employee.name}"></option>
+						</select> <input type="hidden" th:field="*{id}" th:value="${userStory.id}" />
+
+						<input type="submit" value="Save" class="btn btn-default" />
+
+						<p th:if="${#fields.hasErrors('*')}">
+							<span th:each="err : ${#fields.errors('*')}" th:text="${err}">Input
+								is incorrect</span> <br/><a href="/userstory/">User Story List</a>
+						</p>
+					</form>
+
+
+					<ul>
+						<li th:each="e : ${#fields.detailedErrors()}"
+							th:class="${e.global}? globalerr : fielderr"><span
+							th:text="${e.global}? '*' : ${e.fieldName}">The field name</span>
+							| <span th:text="${e.message}">The error message</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
